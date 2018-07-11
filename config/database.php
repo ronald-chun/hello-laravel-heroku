@@ -5,6 +5,11 @@ $username = $url["user"] ?? null;
 $password = $url["pass"] ?? null;
 $database = substr($url["path"], 1) ?? null;
 
+$pgsql_url = parse_url(getenv("DATABASE_URL"));
+$pgsql_host = $pgsql_url["host"] ?? null;
+$pgsql_username = $pgsql_url["user"] ?? null;
+$pgsql_password = $pgsql_url["pass"] ?? null;
+$pgsql_database = substr($pgsql_url["path"], 1) ?? null;
 return [
     /*
     |--------------------------------------------------------------------------
@@ -72,6 +77,17 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+        ],
+
+        'pgsql_production' => [
+            'driver' => 'pgsql',
+            'host' => $pgsql_host,
+            'database' => $pgsql_database,
+            'username' => $pgsql_username,
+            'password' => $pgsql_password,
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
         ],
 
         'pgsql' => [
