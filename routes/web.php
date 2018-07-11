@@ -21,3 +21,8 @@ Route::get('/users', function () {
     $users = User::all();
     echo $users;
 });
+
+
+Route::get('/test', function () {
+    echo "Test";
+});
